@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <style>
+    	.main {
+    background-color: white;
+}
+.block {
+    background-color: white;
+    border-radius: 25px;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.output-text-kzt, .output-text-usd, .output-text-eur {
+    min-width: 150px;
+    background-color: lightgray;
+}
+    </style>
+</head>
+<body class="main">
+<div  class="block">
+    <div>
+        <table>
+            <tr>
+                <td><h4>Введите сумму:</h4></td>
+                <td></td>
+                <td><h4>KZT (Tenge)</h4></td>
+                <td><h4>USD (Dollar)</h4></td>
+                <td><h4>EUR (Euro)</h4></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="amount" oninput="calculate(this.value)" style="padding-top: 5px;margin-bottom: 4px;">
+                    <select id="blmim" onchange="calculate(document.getElementById('amount').value)" style="padding-top: 5px;">
+                        <option value="KZT">KZT</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                </td>
+                <td></td>
+                <td class="output-text-kzt" id="output-kzt">-</td>
+                <td class="output-text-usd" id="output-usd">-</td>
+                <td class="output-text-eur" id="output-eur">-</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    	function calculate(value) {
+	    let currency = document.getElementById("blmim");
+	    if (currency.value === "KZT") {
+	        let kztToUsd = Math.round(value * 0.23201856) / 100;
+	        let kztToEur = Math.round(value * 0.19646365) / 100;
+	        document.getElementById("output-usd").innerHTML = kztToUsd.toString();
+	        document.getElementById("output-eur").innerHTML = kztToEur.toString();
+	        document.getElementById("output-kzt").innerHTML = "-";
+	    } else if (currency.value === "USD") {
+	        let usdToKzt = Math.round(value * 42900.0) / 100;
+	        let usdToEur = Math.round(value * 84.283) / 100;
+	        document.getElementById("output-kzt").innerHTML = usdToKzt.toString();
+	        document.getElementById("output-eur").innerHTML = usdToEur.toString();
+	        document.getElementById("output-usd").innerHTML = "-";
+	    } else if (currency.value === "EUR") {
+	        let eurToKzt = Math.round(value * 50700.0) / 100;
+	        let eurToUsd = Math.round(value * 117.6335) / 100;
+	        document.getElementById("output-kzt").innerHTML = eurToKzt.toString();
+	        document.getElementById("output-usd").innerHTML = eurToUsd.toString();
+	        document.getElementById("output-eur").innerHTML = "-";
+	    }
+	}
+    </script>
+</body>
+</html>
